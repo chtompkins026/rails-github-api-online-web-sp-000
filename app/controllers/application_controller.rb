@@ -8,9 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user
-    client_id = ENV['FOURSQUARE_CLIENT_ID']
+    client_id = ENV['GITHUB_CLIENT']
     redirect_uri = CGI.escape("http://localhost:3000/auth")
     foursquare_url = "https://foursquare.com/oauth2/authenticate?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}"
+    
+    "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT']}&scope=repo" 
     redirect_to foursquare_url unless logged_in?
   end
  
